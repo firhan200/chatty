@@ -28,10 +28,10 @@
                                     <div class="login-feedback error"></div>
                                 </div>      
                                 <div class="form-group">
-                                    <input type="text" value="firhan.faisal1995@gmail.com" class="form-control email" placeholder="E-mail" autofocus="on" required>
+                                    <input type="text" value="" class="form-control email" placeholder="E-mail" autofocus="on" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" value="123456" class="form-control password" placeholder="Password" required>
+                                    <input type="password" value="" class="form-control password" placeholder="Password" required>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-submit full">Login</button>
@@ -69,8 +69,8 @@
                                 <div class="row profile">
                                     <div class="col-12" align="center">
                                         <img src="assets/images/avatar.png" class="rounded-circle img-fluid avatar-me">
-                                        <div class="name">Firhan</div>
-                                        <div class="email">firhan@jmdigital.id</div>
+                                        <div class="name">-</div>
+                                        <div class="email">-</div>
                                         <a href="#" class="logout" data-toggle="modal" data-target="#logoutModal"><i class="fa fa-sign-out"></i> Logout</a>
                                     </div>
                                 </div>
@@ -94,8 +94,14 @@
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-8 col-lg-3 offset-md-4 offset-lg-0">
-                            <div class="box">
-                                ads
+                            <div class="box total-users">
+                                <div class="row">
+                                    <div class="col-12" align="center">
+                                        <div class="count">0</div>
+                                        <div class="label">Members</div>
+                                        <a href="#" class="view-users" data-toggle="modal" data-target="#usersModal">See all</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -116,9 +122,12 @@
                                 <div class="title">Sign up</div>
                                 <div class="subtitle">become a member now</div>
                                 <div class="signup-feedback error"></div>
-                            </div>      
+                            </div>    
                             <div class="form-group">
-                                <input type="text" class="form-control email" placeholder="E-mail" autofocus="on" required>
+                                <input type="text" class="form-control name" placeholder="Name" autofocus="on" required>
+                            </div>  
+                            <div class="form-group">
+                                <input type="text" class="form-control email" placeholder="E-mail" required>
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control password" placeholder="Password" required>
@@ -127,6 +136,50 @@
                                 <button type="submit" class="btn btn-primary btn-submit full">Submit</button>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User detail Modal -->
+        <div id="userModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        
+                        <div class="row user-profile">
+                            <div class="col-12" align="center">
+                                <img src="assets/images/avatar.png" class="rounded-circle img-fluid avatar" style="width:100px !important">
+                                <div class="name">-</div>
+                                <div class="email">-</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- All user detail Modal -->
+        <div id="usersModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        
+                        <h5>Users</h5>
+                        <div class="form-group">
+                            <input id="filterUsers" type="text" class="form-control" placeholder="Search user"/>
+                            <div class="help"><span class="total-results">0</span> results</div>
+                        </div>
+
+                        <table class="table table-hover users-table">
+                            <tbody class="user-list">
+                               
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -154,6 +207,7 @@
 
         <script src="assets/js/jquery.js"></script>
         <script src="assets/js/preloader.js"></script>
+        <script src="assets/js/bootstrap/popper.min.js"></script>
         <script src="assets/js/bootstrap/bootstrap.min.js"></script>
         <script src="assets/js/moment.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>

@@ -45,6 +45,10 @@ body{
     font-size:12pt;
 }
 
+.feeds-list .username a{
+    color:#1b1f23;
+}
+
 .feeds-list .posted-date{
     font-size:9pt;
     margin-top:-2px;
@@ -74,6 +78,16 @@ body{
 .profile .email{
     font-size:10pt;
     color:#B2B2B2;
+}
+
+.user-profile .name{
+    word-wrap: break-word;
+    font-size:14pt;
+}
+
+.user-profile .email{
+    font-size:12pt;
+    color:#696969;
 }
 
 .form-control{
@@ -145,6 +159,20 @@ body{
 .btn-black:hover, .btn-black:active{
     background-color: #1b1f23;
     color:#fff;
+}
+
+.total-users .count{
+    font-size:14pt;
+}
+
+.help{
+    font-size:10pt;
+    color:#696969;
+    font-style:italic;
+}
+
+.total-users .label{
+    font-weight: bold;
 }
 
 @-webkit-keyframes rotating /* Safari and Chrome */ {

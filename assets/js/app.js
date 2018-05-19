@@ -16,7 +16,7 @@ app.web = {
 			if(userJson.photoURL != null){
 				$(".avatar-me").attr("src", userJson.photoURL);
 			}else{
-				$(".avatar-me").attr("src", "assets/images/avatar.png");
+				$(".avatar-me").attr("src", defaultAvatar);
 			}
 			
 			$(".profile").find(".email").text(userJson.email);
@@ -59,7 +59,7 @@ app.web = {
 				localStorage.setItem("chatty_user", JSON.stringify(user));
 				user = localStorage.getItem("chatty_user");
 
-				setFeeds(user);
+				location.reload();
 			 }).catch(function(error) {
 				var errorCode = error.code;
 				errorMessage = error.message;
@@ -78,24 +78,35 @@ app.web = {
 			$(this).find('.btn-submit').prop("disabled", true);
 			$(this).find('.btn-submit').html(loading);
 
+			var username = $(this).find(".name").val();
 			var email = $(this).find(".email").val();
 			var password = $(this).find(".password").val();
 			firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user){
 				// user signed up success
-				localStorage.setItem("chatty_user", JSON.stringify(user));
-				user = localStorage.getItem("chatty_user");
+				var user = firebase.auth().currentUser;
 
-				$("#signUpModal").modal('hide');
+				user.updateProfile({
+					displayName: username,
+					photoURL: ""
+				}).then(function() {
+					localStorage.setItem("chatty_user", JSON.stringify(user));
+					user = localStorage.getItem("chatty_user");
+					createOrUpdateUser(user);
 
-				setFeeds(user);
+					$("#signUpModal").modal('hide');
+					location.reload();
+				}).catch(function(error) {
+					alert("error occured");
+				});		
 			}).catch(function(error) {
 				var errorCode = error.code;
 				var errorMessage = error.message;
 				$(".signup-feedback").text(errorMessage);
-				console.log(errorCode);
+				$(".signup-form").find(".password").val('');
 
 				if(errorCode==null){
 					//sign up success
+					$(".signup-form").find(".email").val('');
 					$("#signUpModal").modal("hide");
 				}
 			});
@@ -120,8 +131,7 @@ app.web = {
 				localStorage.setItem("chatty_user", JSON.stringify(user));
 				user = localStorage.getItem("chatty_user");
 				createOrUpdateUser(user);
-				setFeeds(user);
-				// ...
+				location.reload();
 			}).catch(function(error) {
 				// Handle Errors here.
 				var errorCode = error.code;
@@ -147,7 +157,7 @@ app.web = {
 				localStorage.setItem("chatty_user", JSON.stringify(user));
 				user = localStorage.getItem("chatty_user");
 				createOrUpdateUser(user);
-				setFeeds(user);
+				location.reload();
 			}).catch(function(error) {
 				// Handle Errors here.
 				var errorCode = error.code;
@@ -173,7 +183,7 @@ app.web = {
 				localStorage.setItem("chatty_user", JSON.stringify(user));
 				user = localStorage.getItem("chatty_user");
 				createOrUpdateUser(user);
-				setFeeds(user);
+				location.reload();
 			}).catch(function(error) {
 				// Handle Errors here.
 				var errorCode = error.code;
@@ -185,6 +195,42 @@ app.web = {
 				console.log(errorMessage);
 				// ...
 			});	
+		});
+
+		//count users
+		var users = firebase.database().ref('users').orderByKey();
+		users.on('value', function(snapshot) {
+			$(".total-users").find('.count').html(loading);
+			$(".user-list").html('');
+			var totalUsers = 0;
+			snapshot.forEach(function(childSnapshot){
+				totalUsers++;
+				var user = childSnapshot.val();
+
+				//check photo url
+				var avatar = "";
+				if(user.profile_picture!=null){
+					avatar = user.profile_picture;
+				}else{
+					avatar = defaultAvatar;
+				}
+				$(".user-list").append('<tr><td width="80px"><img src="'+avatar+'" class="rounded-circle img-fluid"/></td><td><div class="name">'+escapeHTML(user.username)+'</div><div class="email">'+escapeHTML(user.email)+'</div></td></tr>');
+			});
+			$(".total-users").find('.count').text(totalUsers);
+			$(".total-results").text(totalUsers);
+		});
+
+		//filter user
+		$("#filterUsers").on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			var total = 0;
+			$(".user-list tr").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+				if($(this).text().toLowerCase().indexOf(value) > -1){
+					total++;
+				}
+			});
+			$(".total-results").text(total);
 		});
 
 		function createOrUpdateUser(user){
@@ -210,7 +256,7 @@ app.web = {
 			snapshot.forEach(function(childSnapshot){
 				var feed = childSnapshot.val();
 
-				//get users
+				//get user
 				var userPromise = firebase.database().ref('users/'+childSnapshot.val().userId).once('value', function(userSnapshot) {
 					return userSnapshot.val();
 				});
@@ -218,6 +264,7 @@ app.web = {
 				var user = userPromise.then(function(data){
 					feed.userPhotoURL = data.val().profile_picture;
 					feed.username = data.val().username;
+					feed.email = data.val().email;
 				});
 
 				feeds.push(feed);
@@ -231,13 +278,28 @@ app.web = {
 					//console.log(post.username);
 					var postDate = new Date(post.postedDate);
 					var responseDate = moment(postDate).fromNow();
-					var feeds = "<div class='box'><div class='row'><div class='col-1' style='padding-right:0px;'><img src='"+post.userPhotoURL+"' class='rounded-circle avatar img-fluid'/></div><div class='col-10'><div class='username'>"+post.username+"</div><div class='posted-date'>"+responseDate+"</div></div></div><div class='row'><div class='col-12'>"+post.postText+"<div></div></div>";
+
+					//check photo url
+					var avatar = "";
+					if(post.userPhotoURL!=null){
+						avatar = post.userPhotoURL;
+					}else{
+						avatar = defaultAvatar;
+					}
+
+					var feeds = "<div class='box'><div class='row'><div class='col-1' style='padding-right:0px;'><a href='#' data-toggle='tooltip' title='"+post.email+"'><img src='"+avatar+"' class='rounded-circle avatar img-fluid'/></a></div><div class='col-10'><div class='username'><a href='#' data-toggle='modal' data-target='#userModal' data-name='"+post.username+"' data-email='"+post.email+"' data-avatar='"+avatar+"' class='view-user'>"+escapeHTML(post.username)+"</a></div><div class='posted-date'>"+responseDate+"</div></div></div><div class='row'><div class='col-12'>"+escapeHTML(post.postText)+"<div></div></div>";
 					$(".feeds-list").append(feeds);
 				});
 
 				$(".feeds-loading").hide();
 			}, 500);
 		});
+
+		$(document).on('click', '.view-user', function(){
+			$('.user-profile').find('.avatar').attr("src", $(this).data('avatar'));
+			$('.user-profile').find('.name').text($(this).data('name'));
+			$('.user-profile').find('.email').text($(this).data('email'));
+		})
 
 		$(".post-form").submit(function(){
 			//get user

@@ -13,3 +13,4 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 var loading = '<i class="fa fa-spinner rotating"></i>';
+var defaultAvatar = "assets/images/avatar.png";
