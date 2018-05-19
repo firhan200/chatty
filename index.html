@@ -62,7 +62,20 @@
             </div>
 
             <div class="feeds hide">
-                <div class="container">
+                <!-- A grey horizontal navbar that becomes vertical on small screens -->
+                <nav class="navbar navbar-expand-sm fixed-top bg-info navbar-dark">
+
+                    <a class="navbar-brand" href="#">Chatty</a>
+
+                    <!-- Links -->
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link logout" href="#" data-toggle="modal" data-target="#logoutModal"><i class="fa fa-sign-out"></i></a>
+                        </li>
+                    </ul>
+
+                </nav>
+                <div class="container content">
                     <div class="row">
                         <div class="col-sm-12 col-md-4 col-lg-3">
                             <div class="box">
@@ -71,7 +84,6 @@
                                         <img src="assets/images/avatar.png" class="rounded-circle img-fluid avatar-me">
                                         <div class="name">-</div>
                                         <div class="email">-</div>
-                                        <a href="#" class="logout" data-toggle="modal" data-target="#logoutModal"><i class="fa fa-sign-out"></i> Logout</a>
                                     </div>
                                 </div>
                             </div>
@@ -104,6 +116,16 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="container footer">
+                    <hr/>
+                    <div class="text row">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4 logo" align="center">Chatty</div>
+                        <div class="col-sm-4" align="right">
+                            &copy; Chatty 2018
+                        </div>         
                     </div>
                 </div>
             </div>

@@ -243,7 +243,7 @@ app.web = {
 		}
 	},
 	feeds: function(){
-		$(".feeds-loading").html(loading);
+		$(".feeds-loading").html("Loading feeds<br/>"+loading);
 
 		//subscribing feeds
 		var postings = firebase.database().ref('postings').orderByKey();
@@ -328,6 +328,7 @@ app.web = {
 
 $(document).ready(function () {
 	app.web.init();
+	$('[data-toggle="tooltip"]').tooltip(); 
 });
 
 function escapeHTML(unsafe_str) {

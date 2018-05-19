@@ -175,6 +175,22 @@ body{
     font-weight: bold;
 }
 
+.feeds .content{
+    margin-top:80px;
+}
+
+.footer .text{
+    font-size:10pt;
+    color:#696969;
+    margin-top:10px;
+}
+
+.footer .logo{
+    font-weight:bold;
+    color:#17a2b8;
+    font-size:12pt !important;
+}
+
 @-webkit-keyframes rotating /* Safari and Chrome */ {
     from {
       -webkit-transform: rotate(0deg);
