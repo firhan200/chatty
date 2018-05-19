@@ -29,8 +29,37 @@ body{
     word-wrap: break-word;
 }
 
-.profile .avatar{
+.avatar-col{
+    padding-right:0px;
+}
+
+.avatar-me{
     width:40px !important;
+}
+
+.avatar{
+    width:40px !important;
+}
+
+.feeds-list .username{
+    font-size:12pt;
+}
+
+.feeds-list .posted-date{
+    font-size:9pt;
+    margin-top:-2px;
+}
+
+.post-form .avatar-me{
+    position:absolute;
+    margin-left:10px;
+    margin-top:5px;
+    width:30px !important;
+}
+
+.post-form .post-text{
+    height:100px;
+    padding-left:50px;
 }
 
 .profile .logout{
@@ -106,6 +135,16 @@ body{
 
 .header .subtitle{
     font-size:10pt;
+}
+
+.btn-black{
+    background-color:#24292e;
+    color:#fff;
+}
+
+.btn-black:hover, .btn-black:active{
+    background-color: #1b1f23;
+    color:#fff;
 }
 
 @-webkit-keyframes rotating /* Safari and Chrome */ {

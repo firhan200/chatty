@@ -9,4 +9,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
+// Get a reference to the database service
+var database = firebase.database();
+
 var loading = '<i class="fa fa-spinner rotating"></i>';
