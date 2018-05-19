@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chatty</title>
+        <link href="assets/css/preloader.css" rel="stylesheet"></link>
+        <link href="assets/css/bootstrap/bootstrap.min.css" rel="stylesheet"></link>
+        <link href="assets/css/fontawesome/css/font-awesome.min.css" rel="stylesheet"></link>
+        <link href="assets/css/style.css" rel="stylesheet"></link>    
+    </head>
+    <body>
+        <div class="preloader-wrapper">
+		    <div class="preloader" align="center">
+		        <i class="fa fa-spinner rotating"></i>
+		    </div>
+        </div>
+        
+        <div class="main">
+            <div class="login">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-5 col-md-5 col-lg-4 offset-sm-1 offset-md-1 offset-lg-2 form-login">
+                            <form action="#" method="post" class="default-login-form">
+                                <div class="header" align="center">
+                                    <div class="title">Chatty</div>
+                                    <div class="subtitle">connect with random people</div>
+                                    <div class="login-feedback error"></div>
+                                </div>      
+                                <div class="form-group">
+                                    <input type="text" value="firhan.faisal1995@gmail.com" class="form-control email" placeholder="E-mail" autofocus="on" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" value="123456" class="form-control password" placeholder="Password" required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-submit full">Login</button>
+                                </div>
+                                <div class="footer" align="center">
+                                    <a href="#" data-toggle="modal" data-target="#signUpModal">Doesn't have account? Sign up now!</a>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-5 col-md-5 col-lg-4 other-login">
+                            <div class="full">
+                                <div class="header" align="center">
+                                    <div class="subtitle">or login with</div>
+                                </div>   
+                                <div class="box">
+                                    <a href="#" class="btn btn-primary"><i class="fa fa-facebook"></i> Facebook</a>
+                                </div>
+                                <div class="box">
+                                    <a href="#" class="google-login btn btn-danger"><i class="fa fa-google"></i> Google</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feeds hide">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4 col-lg-3">
+                            <div class="box">
+                                <div class="row profile">
+                                    <div class="col-3" align="center">
+                                        <img src="assets/images/avatar.png" class="rounded-circle img-fluid avatar">
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="name">Firhan</div>
+                                        <div class="email">firhan@jmdigital.id</div>
+                                        <a href="#" class="logout" data-toggle="modal" data-target="#logoutModal"><i class="fa fa-sign-out"></i> Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-8 col-lg-6">
+                            <div class="box">
+                                feeds
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-8 col-lg-3 offset-md-4 offset-lg-0">
+                            <div class="box">
+                                ads
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="signUpModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        
+                        <form action="#" method="post" class="signup-form">
+                            <div class="header" align="center">
+                                <div class="title">Sign up</div>
+                                <div class="subtitle">become a member now</div>
+                                <div class="signup-feedback error"></div>
+                            </div>      
+                            <div class="form-group">
+                                <input type="text" class="form-control email" placeholder="E-mail" autofocus="on" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control password" placeholder="Password" required>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-submit full">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="logoutModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                        <div class="header" align="center">
+                            <br/>
+                            <div class="title">Logout from chatty?</div>
+                            <br/>
+                            <a href="#" class="btn btn-primary logout-yes">Yes</a>
+                            <a href="#" class="btn btn-danger" class="close" data-dismiss="modal">No</a>
+                        </div>      
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="assets/js/jquery.js"></script>
+        <script src="assets/js/preloader.js"></script>
+        <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+        <script src="assets/js/config.js"></script>
+        <script src="assets/js/app.js"></script>
+    </body>
+</html>
