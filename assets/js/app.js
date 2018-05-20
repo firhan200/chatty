@@ -302,12 +302,13 @@ app.web = {
 		})
 
 		$(".post-form").submit(function(){
+			setPostIdByUtc();
 			//get user
 			var user = firebase.auth().currentUser;
 			if (user) {
 				// User is signed in.
 				var postDate = moment.utc().toDate();
-				var id = postDate.getTime();
+				var id = $("#post-id").val();
 				var postText = $(this).find(".post-text").val();
 				firebase.database().ref('postings/' + id).set({
 					userId: user.uid,
@@ -329,7 +330,22 @@ app.web = {
 $(document).ready(function () {
 	app.web.init();
 	$('[data-toggle="tooltip"]').tooltip(); 
+	setPostIdByUtc();
 });
+
+function setPostIdByUtc(){
+	$.ajax({
+		url:'http://www.convert-unix-time.com/api?timestamp=now&returnType=jsonp&callback=convertUnixTimeCallback',
+		data:{},
+		dataType: 'jsonp',
+		success:function(data){
+			$("#post-id").val(data.timestamp);
+		},
+		error:function(err){
+			$("#post-id").val(new Date.getItem());
+		}
+	});
+}
 
 function escapeHTML(unsafe_str) {
 	if (unsafe_str != null) {
