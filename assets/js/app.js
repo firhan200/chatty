@@ -342,7 +342,8 @@ function setPostIdByUtc(){
 			$("#post-id").val(data.timestamp);
 		},
 		error:function(err){
-			$("#post-id").val(new Date.getItem());
+			var date = new Date();
+			$("#post-id").val(date.getTime());
 		}
 	});
 }
