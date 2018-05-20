@@ -246,7 +246,7 @@ app.web = {
 		$(".feeds-loading").html("Loading feeds<br/>"+loading);
 
 		//subscribing feeds
-		var postings = firebase.database().ref('postings').orderByKey();
+		var postings = firebase.database().ref('postings');
 		postings.on('value', function(snapshot) {
 			$(".feeds-loading").show();
 			$(".feeds-list").html('');
@@ -306,7 +306,7 @@ app.web = {
 			var user = firebase.auth().currentUser;
 			if (user) {
 				// User is signed in.
-				var postDate = new Date();
+				var postDate = moment.utc().toDate();
 				var id = postDate.getTime();
 				var postText = $(this).find(".post-text").val();
 				firebase.database().ref('postings/' + id).set({
