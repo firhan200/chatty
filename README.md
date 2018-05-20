@@ -1,10 +1,15 @@
 # chatty
 
 Social media example using Firebase:
+<br/>
 -firebase authentication using facebook, google & github
+<br/>
 -realtime database based on user authentication
 
-Third party:
+<b>Third party:</b>
+<br/>
 <a href="https://getbootstrap.com/">Bootstrap</a>
+<br/>
 <a href="https://firebase.google.com/">Firebase</a>
+<br/>
 <a href="https://momentjs.com/">Moment js</a>
