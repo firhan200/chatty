@@ -2,6 +2,9 @@
 
 Social media example using Firebase:
 <br/>
+<br/>
+<div align="center"><img src="https://preview.ibb.co/bUpYD8/chatty.png"/></div>
+<br/><br/>
 -firebase authentication using facebook, google & github
 <br/>
 -realtime database based on user authentication
